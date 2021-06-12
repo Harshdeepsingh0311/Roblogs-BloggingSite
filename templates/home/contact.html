@@ -3,5 +3,27 @@
 {% block title %}Contact |{% endblock title %}
 
 {% block body %}
-
+<div class="container">
+    <h1 class='my-2'>Contact Us</h1>
+    <form action='/contact/' method='post'>{% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" name='phone'>
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">How may we help you?</label>
+            <textarea class="form-control" id="desc" name='desc' cols='30' rows='10'></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 {% endblock body %}
