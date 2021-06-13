@@ -1,7 +1,9 @@
-from Blog.models import Post
-from django.shortcuts import render, HttpResponse
-from home.models import Contact
+from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from home.models import Contact
+from Blog.models import Post
 
 # Create your views here.
 def home(request):
@@ -45,3 +47,61 @@ def search(request):
         return render(request, 'home/search.html')
     context = {'allPosts':allPosts, 'query':query}
     return render(request, 'home/search.html', context)
+
+
+def handleSignUp(request):
+    if request.method == 'POST':
+        # get the post parameters
+        username = request.POST.get('username')
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        email = request.POST.get('email')
+        pass1 = request.POST.get('pass1')
+        pass2 = request.POST.get('pass2')
+        print(username, fname, lname)
+
+        # Checks for erroneous inputs
+        if len(username)>10:
+            messages.error(request, "Username must less than 10 characters.") 
+            redirect('home')
+
+        if not username.isalnum():
+            messages.error(request, "Username can include only letters and numbers.") 
+            redirect('home')
+
+        if pass1!=pass2:
+            messages.success(request, "Your Passwords Do Not Match")
+            redirect('home') 
+
+        #Create the user
+        myuser = User.objects.create_user(username, email, pass1)
+        myuser.first_name = fname
+        myuser.last_name = lname
+        myuser.save()
+        messages.success(request, f"{fname} Your Roblogs Account has been created.") 
+        redirect('/')
+    else:
+        return HttpResponse('404 Not Found')
+
+
+def handleLogin(request):
+    if request.method == 'POST':
+        loginUsername = request.POST.get('loginUsername')
+        loginPassword = request.POST.get('loginpass')
+
+        user = authenticate(username=loginUsername, password=loginPassword)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Successfully Logged In...")
+            return redirect('home')
+
+        else:
+            messages.error(request, "Invalid Credentials: Please Try Agian.")
+            return redirect('home')
+    return HttpResponse('404 Not Found')
+
+def handleLogout(request):
+    logout(request)
+    messages.success(request, "Successfully Logged Out")
+    return redirect('home')
