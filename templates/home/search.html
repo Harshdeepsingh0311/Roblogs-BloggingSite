@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
 
-{% block title %}Blog |{% endblock title %}
+{% block title %}Search Results |{% endblock title %}
 
 {% block blogactive %} active {% endblock blogactive %}
 
 {% block body %}
 <div class="container my-3">
-    <h2 class="mb-2">Interesting Blogs By Roblogs</h2>
+    <h2 class="mb-2">Search Results For Your Query....</h2>
+    {% if allPosts|length < 1 %}
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative my-4">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Your search - <em>{{query|truncatechars:20}}...</em> did not match any of the posts.</strong>
+                <h3 class="mb-0">Suggestions:</h3>
+                <ul>
+                    <li class="mt-2">Make sure that all words are spelled correctly.</li>
+                    <li>Try different keywords.</li>
+                    <li>Try more general knowledge</li>
+                    <li>Try fewer keywords.</li>
+                </ul>
+        </div>
+    </div>
+    {% endif %}
+
     {% for post in allPosts %}
     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative my-4">
         <div class="col p-4 d-flex flex-column position-static">
