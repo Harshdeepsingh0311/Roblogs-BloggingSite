@@ -2,7 +2,45 @@
 
 {% block title %}Home |{% endblock title %}
 
+{% block homeactive %} active {% endblock homeactive %}
+
 {% block body %}
+<div class="container">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Roblogs - Blogging Heaven</h1>
+            <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in
+                previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to
+                your liking.</p>
+            <button class="btn btn-primary btn-lg" type="button">Go To Blogs</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="mb-2">Popular BlogPost</h2>
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative my-4">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">World</strong>
+            <h3 class="mb-0">Featured post</h3>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                additional content.</p>
+            <a href="#" class="stretched-link">Continue reading</a>
+        </div>
+    </div>
+
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative my-4">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">World</strong>
+            <h3 class="mb-0">Featured post</h3>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                additional content.</p>
+            <a href="#" class="stretched-link">Continue reading</a>
+        </div>
+    </div>
+
+</div>
 
 {% endblock body %}
-
