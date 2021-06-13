@@ -17,7 +17,13 @@ def contact(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         content = request.POST.get('desc')
-        contact_post = Contact(name=name, email=email, phone=phone, content=content)
-        contact_post.save()
-        messages.success(request, 'Your Message Has Been Sent...')
+        
+        if len(name)<2 or len(email)<3 or len(phone)<10 or len(content)<5:
+            messages.error(request, "Please fill the form correctly...")
+
+        else:
+            contact_post = Contact(name=name, email=email, phone=phone, content=content)
+            contact_post.save()
+            messages.success(request, 'Your Message Has Been Sent...')
+    
     return render(request, 'home/contact.html')
