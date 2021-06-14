@@ -6,7 +6,7 @@
 <div class="container my-6">
   <article class="blog-post my-4">
     <h2 class="blog-post-title">{{post.title}}</h2>
-    <p class="blog-post-meta">{{post.timeStamp}} by <a href="/about">{{post.author}}</a></p>
+    <p class="blog-post-meta">{{post.timeStamp}} by <a class='body-fg body-link' href="/about">{{post.author}}</a></p>
 
     <p>{{post.content}}</p>
     <hr>
@@ -33,7 +33,7 @@
             <input type="text" id="comment" name="comment" class="form-control" placeholder="Enter Comment Here">
           </div>
           <div class="col-md-1">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn body-bg">Submit</button>
           </div>
         </div>
         <input type="hidden" name="parentSno" value="">
@@ -57,7 +57,7 @@
       <div>{{comment.comment}}</div>
       <div class="reply mx-0">
 
-        <button class="btn btn-primary mt-2" type="button" data-bs-toggle="collapse"
+        <button class="btn body-bg mt-2" type="button" data-bs-toggle="collapse"
           data-bs-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
           Reply
         </button>
@@ -73,7 +73,7 @@
                     <input type="hidden" name="parentSno" value="{{comment.sno}}">
                   </div>
                   <div class="col-md-1">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn body-bg">Submit</button>
                   </div>
                 </div>
                 <input type="hidden" name="postSno" value="{{post.sno}}">
