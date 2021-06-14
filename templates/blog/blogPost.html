@@ -4,20 +4,56 @@
 
 {% block body %}
 <div class="container my-6">
-    <article class="blog-post my-4">
-        <h2 class="blog-post-title">{{post.title}}</h2>
-        <p class="blog-post-meta">{{post.timeStamp}} by <a href="/about">{{post.author}}</a></p>
+  <article class="blog-post my-4">
+    <h2 class="blog-post-title">{{post.title}}</h2>
+    <p class="blog-post-meta">{{post.timeStamp}} by <a href="/about">{{post.author}}</a></p>
 
-        <p>{{post.content}}</p>
-        <hr>
-        
-      </article>
+    <p>{{post.content}}</p>
+    <hr>
+
+  </article>
 </div>
+
+{% load static %}
+{% load humanize %}
+
 <div class="container">
-  <h2>Comments</h2>
-  <div class="row my-3">
-    <div class="col-md-2 bg-secondary">Image here</div>
-    <div class="col-md-10 bg-light"><b>HarshdeepSingh:</b> Best Blog Ever Seen</div>
+  <h2>Comments ({{comments.count}})</h2>
+
+  <div class="my-2">
+
+  {% if user.is_authenticated %}
+
+  <form action="/blog/postComment" method="post">
+    {% csrf_token %}
+    <div class="form-group my-3 ">
+      <div class="row g-2 align-items-center">
+        <div class="col-md-11">
+          <input type="text" id="comment" name="comment" class="form-control" placeholder="Enter Comment Here">
+        </div>
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+      <input type="hidden" name="postSno" value="{{post.sno}}">
+    </div>
+  </form>
+
+  {% else %}
+  <p>Please Login To Post A Comment.</p>
+  {% endif %}
+
   </div>
+
+  {% for comment in comments %}
+  <div class="row my-3 mt-4">
+    <div class="col-md-1">
+      <img class="rounded mx-auto d-block w-100 p-1" src="{% static 'profiles/user.png' %}"  alt="user">
+    </div>
+    <div class="col-md-11"><b>{{comment.user.username}}</b> <span class="badge bg-light text-dark">{{comment.timestamp|naturaltime}}</span>
+      <div>{{comment.comment}}</div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock body %}
