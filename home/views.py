@@ -71,7 +71,7 @@ def handleSignUp(request):
             redirect('home')
 
         if pass1!=pass2:
-            messages.success(request, "Your Passwords Do Not Match")
+            messages.warning(request, "Your Passwords Do Not Match")
             redirect('home') 
 
         #Create the user
@@ -80,7 +80,7 @@ def handleSignUp(request):
         myuser.last_name = lname
         myuser.save()
         messages.success(request, f"{fname} Your Roblogs Account has been created.") 
-        redirect('/')
+        return redirect('/')
     else:
         return HttpResponse('404 Not Found')
 

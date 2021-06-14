@@ -8,7 +8,7 @@
     <h2 class="blog-post-title">{{post.title}}</h2>
     <p class="blog-post-meta">{{post.timeStamp}} by <a class='body-fg body-link' href="/about">{{post.author}}</a></p>
 
-    <p>{{post.content}}</p>
+    <p>{{post.content|safe}}</p>
     <hr>
 
   </article>
@@ -33,7 +33,7 @@
             <input type="text" id="comment" name="comment" class="form-control" placeholder="Enter Comment Here">
           </div>
           <div class="col-md-1">
-            <button type="submit" class="btn body-bg">Submit</button>
+            <button type="submit" class="btn body-green">Comment</button>
           </div>
         </div>
         <input type="hidden" name="parentSno" value="">
@@ -42,7 +42,7 @@
     </form>
 
     {% else %}
-    <p>Please Login To Post A Comment.</p>
+    <p class="body-fg">Please Login To Post A Comment.</p>
     {% endif %}
 
   </div>
@@ -53,38 +53,54 @@
       <img class="rounded mx-auto d-block w-100 p-1" src="{% static 'profiles/user.png' %}" alt="user">
     </div>
     <div class="col-md-11">
-      <b>{{comment.user.username}}</b> <span class="badge bg-light text-dark">{{comment.timestamp|naturaltime}}</span>
+      <b>{{comment.user.username}}</b> <span class="badge badge-color">{{comment.timestamp|naturaltime}}</span>
       <div>{{comment.comment}}</div>
       <div class="reply mx-0">
 
-        <button class="btn body-bg mt-2" type="button" data-bs-toggle="collapse"
+        <button class="btn body-green mt-2" type="button" data-bs-toggle="collapse"
           data-bs-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
           Reply
         </button>
 
         <div class="collapse mt-2" id="replyBox{{comment.sno}}">
-          <div class="card card-body">
+          <div class="card card-body w-100">
+
+            {% if user.is_authenticated %}
             <form action="/blog/postComment" method="post">
               {% csrf_token %}
               <div class="form-group my-3 ">
                 <div class="row g-2 align-items-center">
-                  <div class="col-md-11">
+                  <div class="col-md-10">
                     <input type="text" id="comment" name="comment" class="form-control" placeholder="Post Reply Here">
                     <input type="hidden" name="parentSno" value="{{comment.sno}}">
                   </div>
-                  <div class="col-md-1">
-                    <button type="submit" class="btn body-bg">Submit</button>
+                  <div class="col-md-2">
+                    <button type="submit" class="btn body-green">Reply</button>
                   </div>
                 </div>
                 <input type="hidden" name="postSno" value="{{post.sno}}">
               </div>
             </form>
+
+            {% else %}
+            <p class='body-fg'>Please Login To Post A Comment.</p>
+
+            {% endif %}
+
           </div>
         </div>
 
         <div class="replies">
           {% for reply in replyDict|get_val:comment.sno %}
-            {{reply.comment}}<br>
+          <div class="row mt-2">
+            <div class="col-md-1">
+              <img class="rounded mx-auto d-block w-100 p-1" src="{% static 'profiles/user.png' %}" alt="user">
+            </div>
+            <div class="col-md-11">
+              <b>{{reply.user.username}}</b> <span class="badge badge-color">{{reply.timestamp|naturaltime}}</span>
+              <div>{{reply.comment}}</div>
+            </div>
+          </div>
           {% endfor %}
         </div>
 

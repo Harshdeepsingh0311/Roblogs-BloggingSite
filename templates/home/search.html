@@ -8,9 +8,9 @@
 <div class="container my-3">
     <h2 class="mb-2">Search Results For Your Query....</h2>
     {% if allPosts|length < 1 %}
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative my-4">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative my-4 spear-mint">
         <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">Your search - <em>{{query|truncatechars:20}}...</em> did not match any of the posts.</strong>
+            <strong class="d-inline-block mb-2 body-fg">Your search - <em>{{query|truncatechars:20}}...</em> did not match any of the posts.</strong>
                 <h3 class="mb-0">Suggestions:</h3>
                 <ul>
                     <li class="mt-2">Make sure that all words are spelled correctly.</li>
@@ -25,13 +25,13 @@
     {% for post in allPosts %}
     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative my-4">
         <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">{{post.category}}</strong>
+            <strong class="d-inline-block mb-2 body-fg">{{post.category}}</strong>
             <h3 class="mb-0">{{post.title}}</h3>
             <div class="mb-1 text-muted">{{post.timeStamp}}</div>
             <div class="mb-1 text-muted">By <strong>{{post.author}}</strong></div>
             <p class="card-text mb-auto">{{post.content|truncatechars:300}}....</p>
             <div class="my-2">
-            <a href="/blog/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+            <a href="/blog/{{post.slug}}" role="button" class="btn body-green">Continue reading</a>
             </div>
         </div>
     </div>

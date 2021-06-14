@@ -11,42 +11,17 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <title>{%block title%}{% endblock %} Roblogs-BloggingHeaven</title>
-    <style>
-        ::-moz-selection { background: #C9F0DD; }
-        ::selection { background: #C9F0DD; }
-
-        .bg-navbg{
-            background-color: #0c3c26;
-        }
-
-        .body-bg{
-            background-color: #44B78B;
-        }
-
-        .body-fg{
-            color: #44b78B;
-        }
-
-        .body-link:hover{
-            color: #0c3c26;
-        }
-
-        .btn-primary{
-            background-color: #44b78B;
-            border-color: #0c3c26;
-        }
-
-        .btn-primary:hover{
-            background-color: #0c3c26;
-        }
-
-    </style>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-navbg">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark nav-bg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Roblogs</a>
+            <a class="navbar-brand logo-fg" href="/">
+                Roblogs
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -71,9 +46,9 @@
 
                 </ul>
                 <form action="/search/" method="get" class="d-flex mx-2">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query"
+                    <input class="form-control ml-0 vaccum" type="search" placeholder="Search" aria-label="Search" name="query"
                         id="query">
-                    <a href="/search/" <button class="btn btn-light mx-2" type="submit">Search</button></a>
+                    <a href="/search/" <button class="btn body-green mx-2" type="submit">Search</button></a>
                 </form>
 
 
@@ -84,21 +59,21 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Welcome {{request.user}}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">View Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                        <ul class="dropdown-menu p-0" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item " href="#">View Profile</a></li>
+                            <li><hr class="dropdown-divider p-0"></li>
+                            <li><a class="dropdown-item " href="/logout/">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
                 {% else %}
                 <!-- Button to trigger  signup modal -->
-                <button type="button" class="btn btn-light mx-2" data-bs-toggle="modal" data-bs-target="#singupModal">
+                <button type="button" class="btn body-green mx-2" data-bs-toggle="modal" data-bs-target="#singupModal">
                     SignUp
                 </button>
 
                 <!-- Button to trigger login modal -->
-                <button type="button" class="btn btn-light mx-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <button type="button" class="btn body-green mx-2" data-bs-toggle="modal" data-bs-target="#loginModal">
                     Login
                 </button>
                 {% endif %}
@@ -159,7 +134,7 @@
                                 placeholder="Enter Your Password Again" required>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">SignUp</button>
+                            <button type="submit" class="btn body-green">SignUp</button>
                         </div>
                     </form>
 
@@ -190,7 +165,7 @@
                                 placeholder="Choose Your Password" required>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">SignUp</button>
+                            <button type="submit" class="btn body-green">SignUp</button>
                         </div>
                     </form>
 
@@ -214,5 +189,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     -->
 </body>
+
+{% block js %}{% endblock js %}
 
 </html>
