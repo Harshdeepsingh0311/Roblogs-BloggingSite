@@ -12,11 +12,21 @@
 
     <title>{%block title%}{% endblock %} Roblogs-BloggingHeaven</title>
     <style>
+        ::-moz-selection { background: #C9F0DD; }
+        ::selection { background: #C9F0DD; }
+
+        .bg-navbg{
+            background-color: #0c3c26;
+        }
+
+        .body-bg{
+            background-color: #44B78B;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-navbg">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Roblogs</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -45,7 +55,7 @@
                 <form action="/search/" method="get" class="d-flex mx-2">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query"
                         id="query">
-                    <a href="/search/" <button class="btn btn-danger mx-2" type="submit">Search</button></a>
+                    <a href="/search/" <button class="btn btn-light mx-2" type="submit">Search</button></a>
                 </form>
 
 
@@ -65,12 +75,12 @@
                 </ul>
                 {% else %}
                 <!-- Button to trigger  signup modal -->
-                <button type="button" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#singupModal">
+                <button type="button" class="btn btn-light mx-2" data-bs-toggle="modal" data-bs-target="#singupModal">
                     SignUp
                 </button>
 
                 <!-- Button to trigger login modal -->
-                <button type="button" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <button type="button" class="btn btn-light mx-2" data-bs-toggle="modal" data-bs-target="#loginModal">
                     Login
                 </button>
                 {% endif %}
