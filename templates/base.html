@@ -48,6 +48,22 @@
                     <a href="/search/" <button class="btn btn-danger mx-2" type="submit">Search</button></a>
                 </form>
 
+
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav mx-2">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Welcome {{request.user}}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">View Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {% else %}
                 <!-- Button to trigger  signup modal -->
                 <button type="button" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#singupModal">
                     SignUp
@@ -57,6 +73,7 @@
                 <button type="button" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#loginModal">
                     Login
                 </button>
+                {% endif %}
 
             </div>
         </div>
@@ -86,11 +103,12 @@
                     <form action='/signup/' method='post'>{% csrf_token %}
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Please choose a unique username" required>
+                            <input type="text" class="form-control" id="username" name="username"
+                                placeholder="Please choose a unique username" required>
                         </div>
                         <div class="mb-3">
                             <label for="fname" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="fname" name="fname" required >
+                            <input type="text" class="form-control" id="fname" name="fname" required>
                         </div>
                         <div class="mb-3">
                             <label for="lname" class="form-label">Last Name</label>
@@ -104,15 +122,17 @@
                         </div>
                         <div class="mb-3">
                             <label for="pass1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose Your Password" required>
+                            <input type="password" class="form-control" id="pass1" name="pass1"
+                                placeholder="Choose Your Password" required>
                         </div>
                         <div class="mb-3">
                             <label for="pass2" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Enter Your Password Again" required>
+                            <input type="password" class="form-control" id="pass2" name="pass2"
+                                placeholder="Enter Your Password Again" required>
                         </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">SignUp</button>
-                </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">SignUp</button>
+                        </div>
                     </form>
 
                 </div>
@@ -133,15 +153,17 @@
                     <form action="/login/" method="post">{% csrf_token %}
                         <div class="mb-3">
                             <label for="loginUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="loginUsername" name="loginUsername" placeholder="Please choose a unique username" required>
+                            <input type="text" class="form-control" id="loginUsername" name="loginUsername"
+                                placeholder="Please choose a unique username" required>
                         </div>
                         <div class="mb-3">
                             <label for="loginpass" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginpass" name="loginpass" placeholder="Choose Your Password" required>
+                            <input type="password" class="form-control" id="loginpass" name="loginpass"
+                                placeholder="Choose Your Password" required>
                         </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">SignUp</button>
-                </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">SignUp</button>
+                        </div>
                     </form>
 
                 </div>

@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from home.models import Contact
 from Blog.models import Post
 
-# Create your views here.
+# HTML pages
 def home(request):
     return render(request, 'home/home.html')
 
@@ -49,6 +49,7 @@ def search(request):
     return render(request, 'home/search.html', context)
 
 
+# Authentication APIs
 def handleSignUp(request):
     if request.method == 'POST':
         # get the post parameters
@@ -100,6 +101,7 @@ def handleLogin(request):
             messages.error(request, "Invalid Credentials: Please Try Agian.")
             return redirect('home')
     return HttpResponse('404 Not Found')
+
 
 def handleLogout(request):
     logout(request)
