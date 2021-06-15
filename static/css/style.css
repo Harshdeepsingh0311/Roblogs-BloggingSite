@@ -1,33 +1,3 @@
-/* teal green #167D7F
-/* teal #29A0B1
-spearmint #98D7C2
-mint #DDFFE7 
-#fff3cd
-
-::-moz-selection { 
-    background: lightblue; 
-}
-
-::selection {
-    background: lightblue; 
-}
-
-
-/* .navbar-nav li a{
-    color: #167D7F;
-} */
-/* 
-.navbar-light .navbar-nav .nav-link {
-    color: rgb(207, 207, 207);
-}
-
-.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
-    color: white;
-} 
-
-.logo-fg{
-    font-weight: bold;
-} */
 .nav-bg{
     background-color: #167D7F;
 }
@@ -57,15 +27,16 @@ mint #DDFFE7
     color: #1e7886;
 }
 
-.body-green{
+.body-green, .btn-linked{
     background-color: #238b9b;
     color: white;
     border-color: #0C4B33;
 }
 
-.body-green:hover{
+.body-green:hover, .btn-link:hovered{
     background-color: #259aac;
     border-color: #0C4B33;
+    color: white;
 }
 
 .spear-mint{
