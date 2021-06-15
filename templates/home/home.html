@@ -19,28 +19,30 @@
 
 <div class="container">
     <h2 class="mb-2">Popular BlogPost</h2>
+    {% for post in posts|slice:":4" %}
     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative my-4">
         <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 body-fg">World</strong>
-            <h3 class="mb-0">Featured post</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
-                additional content.</p>
-            <a href="#" class="stretched-link body-link">Continue reading</a>
+            <strong class="d-inline-block mb-2 body-fg">{{post.category}} ({{post.views}} Views)</strong>
+            <h3 class="mb-0"><a class="text-dark text-decoration-none" href="/blog/{{post.slug}}">{{post.title}}</a></h3>
+            <div class="mb-1 text-muted">{{post.timeStamp}}</div>
+            <div class="mb-1 text-muted">By <strong>{{post.author}}</strong></div>
+            <p class="card-text mb-auto"><div class="preview">{{post.content|safe|truncatechars:200}}....</div></p>
+            <div class="my-2">
+            <a href="/blog/{{post.slug}}" role="button" class="btn body-green">Continue reading</a>
+            </div>
         </div>
     </div>
-
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative my-4">
-        <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 body-fg">World</strong>
-            <h3 class="mb-0">Featured post</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
-                additional content.</p>
-            <a href="#" class="stretched-link body-link">Continue reading</a>
-        </div>
-    </div>
+    {% endfor %}
 
 </div>
 
 {% endblock body %}
+
+{% block js %}
+    <script>
+        let previews = document.getElementsByClassName('preview');
+        Array.from(previews).forEach((element)=>{
+            element.innerHTML = element.innerText;
+        });
+    </script>
+{% endblock js %}

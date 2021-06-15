@@ -9,8 +9,12 @@ class Post(models.Model):
     category = models.CharField(max_length=255, default='Interesting')
     content = models.TextField()
     slug = models.CharField(max_length=130, default='slug')
+    views = models.IntegerField(default=0)
     author = models.CharField(max_length=100)
     timeStamp = models.DateTimeField(blank=True)
+    
+    class Meta:
+        ordering = ['-views']
 
     def __str__(self):
         return self.title + ' by ' + self.author

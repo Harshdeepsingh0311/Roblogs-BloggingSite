@@ -7,7 +7,9 @@ from Blog.models import Post
 
 # HTML pages
 def home(request):
-    return render(request, 'home/home.html')
+    posts = Post.objects.all()
+    context = {'posts':posts}
+    return render(request, 'home/home.html', context)
 
 
 def about(request):
