@@ -17,6 +17,7 @@ def about(request):
 
 
 def contact(request):
+    messages.success(request, 'If you want your blog to be published in my website you can contact me through this form, and i will get back to you within a day...')
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -64,8 +65,8 @@ def handleSignUp(request):
         print(username, fname, lname)
 
         # Checks for erroneous inputs
-        if len(username)>10:
-            messages.error(request, "Username must less than 10 characters.") 
+        if len(username)>50:
+            messages.error(request, "Username must less than 50 characters.") 
             redirect('home')
 
         if not username.isalnum():
